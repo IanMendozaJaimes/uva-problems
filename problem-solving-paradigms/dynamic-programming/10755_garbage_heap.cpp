@@ -4,12 +4,13 @@
 int main () {
 	int testCases;
 	long m[21][21][21];
-	long maxValue = -17179869184001; //-(2^31 * 20^3 + 1)
+	long maxValue; //-(2^31 * 20^3 + 1)
 	long temp;
 	int a, b, c;
 	long tempValue;
 	scanf("%d", &testCases);
 	while (testCases--) {
+		maxValue = -17179869184001;
 		scanf("%d %d %d", &a, &b, &c);
 		
 		for (int i = 0; i < a; i++) {
@@ -17,9 +18,9 @@ int main () {
 				for (int k = 0; k < c; k++) {
 					scanf("%ld", &tempValue);
 					m[i][j][k] = tempValue;
-					if (i > 0) { m[i][j][k] += m[i-1][j][k]; }
-					if (j > 0) { m[i][j][k] += m[i][j-1][k]; }
-					if (i > 0 && j > 0) { m[i][j][k] -= m[i-1][j-1][k]; }
+					if (i > 0) m[i][j][k] += m[i-1][j][k];
+					if (j > 0) m[i][j][k] += m[i][j-1][k];
+					if (i > 0 && j > 0) m[i][j][k] -= m[i-1][j-1][k];
 				}
 			}
 		}
@@ -38,6 +39,7 @@ int main () {
 			}
 		}
 		printf("%ld\n", maxValue);
+		if (testCases) printf("\n");
 	}
 	return 0;
 }
